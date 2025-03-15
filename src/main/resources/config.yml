@@ -1,0 +1,11 @@
+configuration:
+  reload-message: '<green>Плагин успешно перезапущен.'
+
+  warp-teleport: '<gray>Вы телепортированы.'
+
+  warp-successful-created: '<green>Warp успешно создан.'
+  warp-limit-error-message: '<red>У вас исчерпан лимит warp-ов! {warps}/{limit}'
+  warp-already-exists-message: '<red>Данный warp уже существует'
+
+  other-warp-delete-error-message: '<red>Вы не можете удалить чужой warp.'
+  successful-warp-deletion-message: '<gray>Вы успешно удалили warp.'

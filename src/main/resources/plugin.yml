@@ -1,0 +1,5 @@
+name: warps
+version: '1.0'
+main: ru.sema1ary.warps.Warps
+api-version: '1.20'
+authors: [ sema1ary ]
