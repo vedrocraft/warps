@@ -37,21 +37,21 @@ public final class Warps extends JavaPlugin implements BaseCommons {
 
         ServiceManager.registerService(WarpService.class, new WarpServiceImpl(
                 getDao(Warp.class),
-                ServiceManager.getService(ConfigService.class),
-                ServiceManager.getService(WarpUserService.class)
+                getService(ConfigService.class),
+                getService(WarpUserService.class)
         ));
 
         getServer().getPluginManager().registerEvents(new PreJoinListener(
-                ServiceManager.getService(WarpUserService.class)
+                getService(WarpUserService.class)
         ), this);
 
         LiteCommandBuilder.builder()
                 .commands(new WarpCommand(
-                        ServiceManager.getService(WarpService.class),
-                        ServiceManager.getService(ConfigService.class)
+                        getService(WarpService.class),
+                        getService(ConfigService.class)
                 ))
                 .argument(Warp.class, new WarpArgument(
-                        ServiceManager.getService(WarpService.class)
+                        getService(WarpService.class)
                 ))
                 .build();
     }
