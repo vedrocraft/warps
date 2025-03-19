@@ -71,7 +71,7 @@ public class WarpServiceImpl implements WarpService {
         }
 
         if(findByName(name).isPresent()) {
-            PlayerUtil.sendMessage(sender, configService.get("warp-already-exists-message"));
+            PlayerUtil.sendMessage(sender, (String) configService.get("warp-already-exists-message"));
             return;
         }
 
@@ -81,14 +81,14 @@ public class WarpServiceImpl implements WarpService {
                 .location(LocationSerializer.serialize(sender.getLocation()))
                 .build());
 
-        PlayerUtil.sendMessage(sender, configService.get("warp-successful-created"));
+        PlayerUtil.sendMessage(sender, (String) configService.get("warp-successful-created"));
     }
 
     @Override
     public void deleteWarp(@NonNull Player sender, @NonNull Warp warp) {
         if(!sender.hasPermission("warps.delete.other") &&
                 !warp.getOwner().getUsername().equals(sender.getName())) {
-            PlayerUtil.sendMessage(sender, configService.get("other-warp-delete-error-message"));
+            PlayerUtil.sendMessage(sender, (String) configService.get("other-warp-delete-error-message"));
             return;
         }
 
@@ -98,6 +98,6 @@ public class WarpServiceImpl implements WarpService {
             throw new RuntimeException(e);
         }
 
-        PlayerUtil.sendMessage(sender, configService.get("successful-warp-deletion-message"));
+        PlayerUtil.sendMessage(sender, (String) configService.get("successful-warp-deletion-message"));
     }
 }

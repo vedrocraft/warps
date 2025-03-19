@@ -26,14 +26,14 @@ public class WarpCommand {
     @Permission("warps.reload")
     void reload(@Context CommandSender sender) {
         configService.reload();
-        PlayerUtil.sendMessage(sender, configService.get("reload-message"));
+        PlayerUtil.sendMessage(sender, (String) configService.get("reload-message"));
     }
 
     @Async
     @Execute
     void execute(@Context Player sender, @Arg("название") Warp warp) {
         sender.teleportAsync(LocationSerializer.deserialize(warp.getLocation()));
-        PlayerUtil.sendMessage(sender, configService.get("warp-teleport"));
+        PlayerUtil.sendMessage(sender, (String) configService.get("warp-teleport"));
     }
 
     @Async

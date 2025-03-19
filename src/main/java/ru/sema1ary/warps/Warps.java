@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.sema1ary.vedrocraftapi.BaseCommons;
 import ru.sema1ary.vedrocraftapi.command.LiteCommandBuilder;
 import ru.sema1ary.vedrocraftapi.ormlite.ConnectionSourceUtil;
+import ru.sema1ary.vedrocraftapi.ormlite.DatabaseUtil;
 import ru.sema1ary.vedrocraftapi.service.ConfigService;
 import ru.sema1ary.vedrocraftapi.service.ServiceManager;
 import ru.sema1ary.vedrocraftapi.service.impl.ConfigServiceImpl;
@@ -26,11 +27,9 @@ public final class Warps extends JavaPlugin implements BaseCommons {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
-
         ServiceManager.registerService(ConfigService.class, new ConfigServiceImpl(this));
 
-        initConnectionSource();
+        DatabaseUtil.initConnectionSource(this, WarpUser.class, Warp.class);
 
         ServiceManager.registerService(WarpUserService.class, new WarpUserServiceImpl(
                 getDao(WarpUser.class)
@@ -60,16 +59,5 @@ public final class Warps extends JavaPlugin implements BaseCommons {
     @Override
     public void onDisable() {
         ConnectionSourceUtil.closeConnection(true);
-    }
-
-    @SneakyThrows
-    private void initConnectionSource() {
-        Path databaseFilePath = Paths.get("plugins/warps/database.sqlite");
-        if(!Files.exists(databaseFilePath) && !databaseFilePath.toFile().createNewFile()) {
-            return;
-        }
-
-        ConnectionSourceUtil.connectNoSQLDatabase(databaseFilePath.toString(), WarpUser.class,
-                Warp.class);
     }
 }
