@@ -1,6 +1,5 @@
 package ru.sema1ary.warps;
 
-import lombok.SneakyThrows;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.sema1ary.vedrocraftapi.BaseCommons;
 import ru.sema1ary.vedrocraftapi.command.LiteCommandBuilder;
@@ -18,10 +17,6 @@ import ru.sema1ary.warps.service.WarpService;
 import ru.sema1ary.warps.service.WarpUserService;
 import ru.sema1ary.warps.service.impl.WarpServiceImpl;
 import ru.sema1ary.warps.service.impl.WarpUserServiceImpl;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public final class Warps extends JavaPlugin implements BaseCommons {
 
