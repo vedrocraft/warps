@@ -50,6 +50,12 @@ public class WarpCommand {
 
     @Async
     @Execute(name = "limit-upgrade")
+    void buy(@Context Player sender) {
+        warpService.increaseWarpLimit(sender, 1);
+    }
+
+    @Async
+    @Execute(name = "limit-upgrade")
     void buy(@Context Player sender, @Arg("количество") int amount) {
         warpService.increaseWarpLimit(sender, amount);
     }
