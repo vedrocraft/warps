@@ -47,4 +47,10 @@ public class WarpCommand {
     void remove(@Context CommandSender sender, @Arg("название") Warp warp) {
         warpService.deleteWarp((Player) sender, warp);
     }
+
+    @Async
+    @Execute(name = "limit-upgrade")
+    void buy(@Context Player sender, @Arg("количество") int amount) {
+        warpService.increaseWarpLimit(sender, amount);
+    }
 }

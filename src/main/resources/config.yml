@@ -9,3 +9,7 @@ configuration:
 
   other-warp-delete-error-message: '<red>Вы не можете удалить чужой warp.'
   successful-warp-deletion-message: '<gray>Вы успешно удалили warp.'
+
+  limit-up-price: 25000
+  successful-limit-upgrade: '<green>Вы успешно купили увеличение лимита warp-ов!'
+  dont-have-money-message: '<red>У вас недостаточно средств. ({price})'

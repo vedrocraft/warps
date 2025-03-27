@@ -2,7 +2,10 @@ package ru.sema1ary.warps.service.impl;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import ru.sema1ary.economy.Economy;
+import ru.sema1ary.economy.service.EconomyService;
 import ru.sema1ary.vedrocraftapi.player.PlayerUtil;
 import ru.sema1ary.vedrocraftapi.serialization.LocationSerializer;
 import ru.sema1ary.vedrocraftapi.service.ConfigService;
@@ -99,5 +102,26 @@ public class WarpServiceImpl implements WarpService {
         }
 
         PlayerUtil.sendMessage(sender, (String) configService.get("successful-warp-deletion-message"));
+    }
+
+    @Override
+    public void increaseWarpLimit(@NonNull Player sender, int amount) {
+        WarpUser user = userService.getUser(sender.getName());
+        Economy economy = (Economy) Bukkit.getPluginManager().getPlugin("economy");
+
+        assert economy != null;
+        int price = (int) configService.get("limit-up-price") * amount;
+
+        if(!economy.getService(EconomyService.class).withdrawWithMoneyCheck(sender, price)) {
+            PlayerUtil.sendMessage(sender,
+                    ((String) configService.get("dont-have-money-message"))
+                            .replace("{price}", String.valueOf(price))
+            );
+            return;
+        }
+
+        PlayerUtil.sendMessage(sender, (String) configService.get("successful-limit-upgrade"));
+        user.setWarpLimit(user.getWarpLimit() + price);
+        userService.save(user);
     }
 }

@@ -60,6 +60,11 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>vedrocraft-repository-releases</id>
+            <name>Vedrocraft Maven Repository</name>
+            <url>https://maven.vedrocraft.space/releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -72,7 +77,13 @@
         <dependency>
             <groupId>ru.sema1ary</groupId>
             <artifactId>bukkit</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.sema1ary</groupId>
+            <artifactId>economy</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

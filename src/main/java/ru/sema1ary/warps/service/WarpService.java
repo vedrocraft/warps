@@ -21,4 +21,6 @@ public interface WarpService extends Service {
     void createWarp(@NonNull Player sender, @NonNull String name);
 
     void deleteWarp(@NonNull Player sender, @NonNull Warp warp);
+
+    void increaseWarpLimit(@NonNull Player sender, int amount);
 }
